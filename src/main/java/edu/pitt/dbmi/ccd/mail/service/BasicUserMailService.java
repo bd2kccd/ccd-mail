@@ -18,7 +18,6 @@
  */
 package edu.pitt.dbmi.ccd.mail.service;
 
-import edu.pitt.dbmi.ccd.mail.domain.User;
 import java.util.Locale;
 import javax.mail.MessagingException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -43,12 +42,13 @@ public class BasicUserMailService extends BasicMailService implements UserMailSe
     }
 
     @Override
-    public void sendRegistrationActivation(User user, String activationUrl) throws MessagingException {
+    public void sendRegistrationActivation(String username, String email, String activationUrl) throws MessagingException {
         Context context = new Context(LOCALE);
-        context.setVariable("user", user);
+        context.setVariable("username", username);
+        context.setVariable("email", email);
         context.setVariable("activationUrl", activationUrl);
 
-        String to = user.getEmail();
+        String to = email;
         String subject = "CCD Account Activation";
         String body = this.templateEngine.process("email/registration-activation", context);
         boolean html = true;

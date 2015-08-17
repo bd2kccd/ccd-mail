@@ -18,7 +18,6 @@
  */
 package edu.pitt.dbmi.ccd.mail.service;
 
-import edu.pitt.dbmi.ccd.mail.domain.User;
 import javax.mail.MessagingException;
 
 /**
@@ -29,6 +28,6 @@ import javax.mail.MessagingException;
  */
 public interface UserMailService {
 
-    public void sendRegistrationActivation(User user, String activationUrl) throws MessagingException;
+    public void sendRegistrationActivation(String username, String email, String activationUrl) throws MessagingException;
 
 }

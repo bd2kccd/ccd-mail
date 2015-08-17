@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-        <p th:inline="text">Hello [[${user.username}]],</p>
+        <p th:inline="text">Hello [[${username}]],</p>
         <p>
             Thank you for your registration.  Below is the summary of your registration:
         </p>
@@ -15,11 +15,11 @@
             <tbody>
                 <tr>
                     <td>Username:</td>
-                    <td th:text="${user.username}">username</td>
+                    <td th:text="${username}">username</td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td th:text="${user.email}">email</td>
+                    <td th:text="${email}">email</td>
                 </tr>
             </tbody>
         </table>
