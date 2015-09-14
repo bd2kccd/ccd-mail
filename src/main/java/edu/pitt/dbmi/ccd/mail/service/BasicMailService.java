@@ -19,8 +19,10 @@
 package edu.pitt.dbmi.ccd.mail.service;
 
 import javax.mail.MessagingException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
 
 /**
  *
@@ -28,10 +30,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
+@Service
 public class BasicMailService implements SimpleMailService {
 
     protected final JavaMailSender javaMailSender;
 
+    @Autowired(required = true)
     public BasicMailService(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     }
