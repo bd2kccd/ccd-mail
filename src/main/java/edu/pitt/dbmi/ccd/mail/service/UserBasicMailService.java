@@ -22,11 +22,11 @@ import javax.mail.MessagingException;
 
 /**
  *
- * Aug 5, 2015 10:20:18 AM
+ * Sep 15, 2015 8:52:25 AM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-public interface UserMailService {
+public interface UserBasicMailService {
 
     public void sendRegistrationActivation(String username, String email, String activationUrl) throws MessagingException;
 

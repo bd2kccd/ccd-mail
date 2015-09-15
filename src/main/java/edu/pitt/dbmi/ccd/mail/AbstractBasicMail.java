@@ -16,25 +16,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
-package edu.pitt.dbmi.ccd.mail.service;
+package edu.pitt.dbmi.ccd.mail;
 
-import edu.pitt.dbmi.ccd.mail.AbstractBasicMail;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.mail.MessagingException;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
+import org.springframework.mail.javamail.MimeMessageHelper;
 
 /**
  *
- * Sep 15, 2015 8:49:30 AM
+ * Sep 15, 2015 8:45:14 AM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-@Service
-public class SimpleMailService extends AbstractBasicMail implements BasicMailService {
+public class AbstractBasicMail {
 
-    @Autowired(required = true)
-    public SimpleMailService(JavaMailSender javaMailSender) {
-        super(javaMailSender);
+    protected final JavaMailSender javaMailSender;
+
+    public AbstractBasicMail(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
+
+    public void send(String to, String subject, String body, boolean html) throws MessagingException {
+        javaMailSender.send(mimeMessage -> {
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(body, html);
+            message.setValidateAddresses(true);
+        });
     }
 
 }

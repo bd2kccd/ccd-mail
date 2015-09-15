@@ -18,6 +18,7 @@
  */
 package edu.pitt.dbmi.ccd.mail.service;
 
+import edu.pitt.dbmi.ccd.mail.AbstractBasicMail;
 import java.util.Locale;
 import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,19 +29,19 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 
 /**
  *
- * Aug 5, 2015 10:21:39 AM
+ * Sep 15, 2015 8:53:06 AM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
 @Service
-public class BasicUserMailService extends BasicMailService implements UserMailService {
+public class SimpleUserMailService extends AbstractBasicMail implements UserBasicMailService {
 
-    private static final Locale LOCALE = new Locale("en", "US");
+    protected static final Locale LOCALE = new Locale("en", "US");
 
-    private final SpringTemplateEngine templateEngine;
+    protected final SpringTemplateEngine templateEngine;
 
     @Autowired(required = true)
-    public BasicUserMailService(SpringTemplateEngine templateEngine, JavaMailSender javaMailSender) {
+    public SimpleUserMailService(SpringTemplateEngine templateEngine, JavaMailSender javaMailSender) {
         super(javaMailSender);
         this.templateEngine = templateEngine;
     }

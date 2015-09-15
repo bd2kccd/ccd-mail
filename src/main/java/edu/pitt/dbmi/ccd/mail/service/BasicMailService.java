@@ -19,36 +19,15 @@
 package edu.pitt.dbmi.ccd.mail.service;
 
 import javax.mail.MessagingException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
 
 /**
  *
- * Aug 5, 2015 9:17:50 AM
+ * Sep 15, 2015 8:48:47 AM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-@Service
-public class BasicMailService implements SimpleMailService {
+public interface BasicMailService {
 
-    protected final JavaMailSender javaMailSender;
-
-    @Autowired(required = true)
-    public BasicMailService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
-
-    @Override
-    public void send(String to, String subject, String body, boolean html) throws MessagingException {
-        javaMailSender.send(mimeMessage -> {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(body, html);
-            message.setValidateAddresses(true);
-        });
-    }
+    public void send(String to, String subject, String body, boolean html) throws MessagingException;
 
 }
