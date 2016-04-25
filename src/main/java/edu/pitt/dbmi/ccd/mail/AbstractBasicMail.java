@@ -28,7 +28,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-public class AbstractBasicMail {
+public abstract class AbstractBasicMail {
 
     protected final JavaMailSender javaMailSender;
 
@@ -37,6 +37,16 @@ public class AbstractBasicMail {
     }
 
     public void send(String to, String subject, String body, boolean html) throws MessagingException {
+        javaMailSender.send(mimeMessage -> {
+            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(body, html);
+            message.setValidateAddresses(true);
+        });
+    }
+
+    public void send(String[] to, String subject, String body, boolean html) throws MessagingException {
         javaMailSender.send(mimeMessage -> {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
             message.setTo(to);
