@@ -23,42 +23,20 @@
  */
 package edu.pitt.dbmi.ccd.mail;
 
-import javax.mail.MessagingException;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  *
- * Sep 15, 2015 8:45:14 AM
+ * Aug 8, 2016 3:10:14 PM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-public abstract class AbstractBasicMail {
+@SpringBootApplication
+public class CcdMailApplication {
 
-    protected final JavaMailSender javaMailSender;
-
-    public AbstractBasicMail(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
-    }
-
-    public void send(String to, String subject, String body, boolean html) throws MessagingException {
-        javaMailSender.send(mimeMessage -> {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(body, html);
-            message.setValidateAddresses(true);
-        });
-    }
-
-    public void send(String[] to, String subject, String body, boolean html) throws MessagingException {
-        javaMailSender.send(mimeMessage -> {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(body, html);
-            message.setValidateAddresses(true);
-        });
+    public static void main(String[] args) {
+        SpringApplication.run(CcdMailApplication.class, args);
     }
 
 }
