@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 University of Pittsburgh.
+ * Copyright (C) 2016 University of Pittsburgh.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,23 +18,23 @@
  */
 package edu.pitt.dbmi.ccd.mail;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  *
- * Aug 5, 2015 9:02:05 AM
+ * Aug 8, 2016 3:10:14 PM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-@SpringBootApplication
-public class CCDMailApplication {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class CcdMailApplicationTests {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(CCDMailApplication.class, args);
+    @Test
+    public void contextLoads() {
     }
 
 }
