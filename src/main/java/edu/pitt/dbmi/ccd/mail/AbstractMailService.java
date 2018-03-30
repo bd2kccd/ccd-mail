@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 University of Pittsburgh.
+ * Copyright (C) 2018 University of Pittsburgh.
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -23,21 +23,22 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 /**
+ * An abstract class for sending email.
  *
- * Sep 15, 2015 8:45:14 AM
+ * Mar 30, 2018 11:56:54 AM
  *
  * @author Kevin V. Bui (kvb2@pitt.edu)
  */
-public class AbstractBasicMail {
+public abstract class AbstractMailService {
 
-    protected final JavaMailSender javaMailSender;
+    protected final JavaMailSender mailSender;
 
-    public AbstractBasicMail(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
+    public AbstractMailService(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
     }
 
     public void send(String to, String subject, String body, boolean html) throws MessagingException {
-        javaMailSender.send(mimeMessage -> {
+        mailSender.send(mimeMessage -> {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
             message.setTo(to);
             message.setSubject(subject);
@@ -47,7 +48,7 @@ public class AbstractBasicMail {
     }
 
     public void send(String[] to, String subject, String body, boolean html) throws MessagingException {
-        javaMailSender.send(mimeMessage -> {
+        mailSender.send(mimeMessage -> {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
             message.setTo(to);
             message.setSubject(subject);
